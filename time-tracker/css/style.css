@@ -1,0 +1,304 @@
+body {
+  background: #121212;
+  color: #00ffff;
+  font-family: 'Roboto Mono', monospace;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  max-width: 1000px;
+  margin-bottom: 30px;
+}
+
+.timer {
+  background: #1e1e1e;
+  border: 2px solid #00ffff;
+  border-radius: 10px;
+  width: 250px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 0 10px #00ffff66;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.timer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px #00ffff99;
+}
+
+.timer.ended {
+  background: #800000;
+  border-color: #ff0000;
+  color: #ffcccc;
+  animation: pulse-red 2s infinite;
+}
+
+.timer.holiday {
+  background: #2a2a00;
+  border: 2px solid #ffff00;
+  box-shadow: 0 0 10px #ffff0066;
+  color: #ffff99;
+  animation: glow-yellow 2s infinite alternate;
+}
+
+.timer.holiday .date {
+  color: #ffffcc;
+}
+
+.timer.holiday.ended {
+  background: #4d3300;
+  border-color: #ffcc00;
+  color: #ffffcc;
+  animation: pulse-gold 2s infinite;
+}
+
+@keyframes pulse-red {
+  0% { box-shadow: 0 0 5px #ff000066; }
+  50% { box-shadow: 0 0 20px #ff0000aa; }
+  100% { box-shadow: 0 0 5px #ff000066; }
+}
+
+@keyframes glow-yellow {
+  from {
+    box-shadow: 0 0 5px #ffff0066;
+  }
+  to {
+    box-shadow: 0 0 20px #ffff00aa;
+  }
+}
+
+@keyframes pulse-gold {
+  0% { box-shadow: 0 0 5px #ffcc0066; }
+  50% { box-shadow: 0 0 20px #ffcc00aa; }
+  100% { box-shadow: 0 0 5px #ffcc0066; }
+}
+
+.event-name {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.date {
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  color: #ccc;
+}
+
+.time {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 15px;
+}
+
+.unit {
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+.unit span {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  background: #00ffff;
+  border: none;
+  padding: 8px 15px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px;
+  color: #121212;
+  transition: all 0.2s;
+  font-family: 'Roboto Mono', monospace;
+}
+
+button:hover {
+  background: #00cccc;
+  transform: scale(1.05);
+}
+
+.timer.holiday button {
+  background: #ffff00;
+  color: #121212;
+}
+
+.timer.holiday button:hover {
+  background: #e6e600;
+}
+
+.add-btn {
+  background: #4CAF50;
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.add-btn:hover {
+  background: #45a049;
+}
+
+.delete-btn {
+  background: #f44336;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+}
+
+.edit-btn {
+  background: #ff9800;
+}
+
+.edit-btn:hover {
+  background: #e68a00;
+}
+
+.empty-state {
+  color: #888;
+  font-style: italic;
+  text-align: center;
+  width: 100%;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: #1e1e1e;
+  margin: 10% auto;
+  padding: 25px;
+  border: 2px solid #00ffff;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 0 20px #00ffff66;
+  color: #00ffff;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: #ff0000;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"],
+input[type="time"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #00ffff;
+  border-radius: 5px;
+  background-color: #121212;
+  color: #00ffff;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.submit-btn {
+  background: #4CAF50;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  margin-top: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  body {
+    padding: 15px;
+  }
+  
+  .timer {
+    width: 100%;
+  }
+  
+  .modal-content {
+    margin: 20% auto;
+    width: 85%;
+  }
+}
+/* Previous styles remain the same, add these new styles */
+
+.toolbar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.json-btn {
+  background: #9c27b0;
+  padding: 10px 20px;
+  font-size: 1rem;
+}
+
+.json-btn:hover {
+  background: #7b1fa2;
+}
+
+#jsonData {
+  width: 100%;
+  height: 200px;
+  padding: 10px;
+  margin: 15px 0;
+  border: 1px solid #00ffff;
+  border-radius: 5px;
+  background-color: #121212;
+  color: #00ffff;
+  font-family: 'Roboto Mono', monospace;
+  resize: vertical;
+}
+
+/* Add this to make checkboxes look better */
+input[type="checkbox"] {
+  margin-right: 10px;
+  width: 15px;
+  height: 15px;
+  accent-color: #00ffff;
+}
